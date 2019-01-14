@@ -239,5 +239,10 @@ namespace Example.Forms
             DarkTreeNode dtn = new DarkTreeNode();
             dtn.IsFolder = true;
         }
+
+        private void DockPanel_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

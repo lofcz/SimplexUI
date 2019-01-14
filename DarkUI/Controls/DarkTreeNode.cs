@@ -1,9 +1,11 @@
 ﻿using DarkUI.Collections;
 using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace DarkUI.Controls
 {
+    [Serializable]
     public class DarkTreeNode
     {
         #region Event Region
@@ -44,6 +46,9 @@ namespace DarkUI.Controls
             }
         }
 
+        public Point Size { get; set; }
+
+        public Point Location { get; set; }
         public Rectangle ExpandArea { get; set; }
 
         public Rectangle IconArea { get; set; }

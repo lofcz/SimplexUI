@@ -343,6 +343,7 @@ namespace Example.Forms
             this.DockPanel.Name = "DockPanel";
             this.DockPanel.Size = new System.Drawing.Size(944, 564);
             this.DockPanel.TabIndex = 3;
+            this.DockPanel.Load += new System.EventHandler(this.DockPanel_Load);
             // 
             // darkSeparator1
             // 

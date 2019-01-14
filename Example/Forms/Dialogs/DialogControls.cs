@@ -24,6 +24,7 @@ namespace Example.Forms.Dialogs
                 var node = new DarkTreeNode($"Root node #{i}");
                 node.ExpandedIcon = Icons.folder_open;
                 node.Icon = Icons.folder_closed;
+                node.IsFolder = true;
 
                 for (var x = 0; x < 10; x++)
                 {
@@ -46,6 +47,16 @@ namespace Example.Forms.Dialogs
             {
                 DarkMessageBox.Show(this, "This is some information, except it is much bigger, so there we go. I wonder how this is going to go. I hope it resizes properly. It probably will.", "Dark UI - Example", MessageBoxIcon.Warning);
             };
+        }
+
+        private void treeTest_Click(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void lstTest_MouseMove(object sender, MouseEventArgs e)
+        {
+
         }
     }
 }

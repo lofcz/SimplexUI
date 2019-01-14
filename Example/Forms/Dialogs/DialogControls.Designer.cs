@@ -115,6 +115,7 @@ namespace Example.Forms.Dialogs
             this.treeTest.Size = new System.Drawing.Size(222, 374);
             this.treeTest.TabIndex = 0;
             this.treeTest.Text = "darkTreeView1";
+            this.treeTest.Click += new System.EventHandler(this.treeTest_Click);
             // 
             // pnlListView
             // 
@@ -136,6 +137,7 @@ namespace Example.Forms.Dialogs
             this.lstTest.Size = new System.Drawing.Size(220, 374);
             this.lstTest.TabIndex = 7;
             this.lstTest.Text = "darkListView1";
+            this.lstTest.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lstTest_MouseMove);
             // 
             // pnlMessageBox
             // 
@@ -276,7 +278,6 @@ namespace Example.Forms.Dialogs
             this.btnMessageBox.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnMessageBox.Location = new System.Drawing.Point(0, 0);
             this.btnMessageBox.Name = "btnMessageBox";
-            this.btnMessageBox.Padding = new System.Windows.Forms.Padding(5);
             this.btnMessageBox.Size = new System.Drawing.Size(200, 30);
             this.btnMessageBox.TabIndex = 12;
             this.btnMessageBox.Text = "Message Box";
@@ -298,7 +299,6 @@ namespace Example.Forms.Dialogs
             this.btnDialog.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnDialog.Location = new System.Drawing.Point(0, 26);
             this.btnDialog.Name = "btnDialog";
-            this.btnDialog.Padding = new System.Windows.Forms.Padding(5);
             this.btnDialog.Size = new System.Drawing.Size(200, 30);
             this.btnDialog.TabIndex = 4;
             this.btnDialog.Text = "Dialog";

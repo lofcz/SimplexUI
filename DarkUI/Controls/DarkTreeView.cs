@@ -10,7 +10,10 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 
 namespace DarkUI.Controls
@@ -1009,23 +1012,57 @@ namespace DarkUI.Controls
             {
                 var cachedSelectedNodes = SelectedNodes.ToList();
 
-                foreach (var node in _dragNodes)
+                if (dropNode.IsFolder)
                 {
-                    if (node.ParentNode == null)
-                        Nodes.Remove(node);
-                    else
-                        node.ParentNode.Nodes.Remove(node);
+                    Debug.WriteLine("good boi");
 
-                    dropNode.Nodes.Add(node);
+                    foreach (var node in _dragNodes)
+                    {
+                        if (node.ParentNode == null)
+                            Nodes.Remove(node);
+                        else
+                            node.ParentNode.Nodes.Remove(node);
+
+                        dropNode.Nodes.Add(node);
+                    }
+
+                    if (TreeViewNodeSorter != null)
+                        dropNode.Nodes.Sort(TreeViewNodeSorter);
+
+                    dropNode.Expanded = true;
+
+                    foreach (var node in cachedSelectedNodes)
+                        SelectedNodes.Add(node);
+                }
+                else
+                {
+                    // swap position of drag nodes and drop node
+                    int indexDrop = dropNode.ParentNode.Nodes.FindIndex(x => x.GetHashCode() == dropNode.GetHashCode()); // Index of drop node
+
+
+                    DarkTreeNode dtn = new DarkTreeNode();
+                    dtn.Text = _dragNodes[0].Text;
+                    dtn.IsFolder = _dragNodes[0].IsFolder;
+                    dtn.ParentNode = dropNode.ParentNode;
+                    dtn.Icon = _dragNodes[0].Icon;
+                    dtn.Nodes = _dragNodes[0].Nodes;
+                    dtn.Tag = _dragNodes[0].Tag;
+                    dtn.ParentTree = _dragNodes[0].ParentTree;
+                    dtn.IsRoot = _dragNodes[0].IsRoot;
+
+                    int offset = 0;
+
+                    if (dropNode.ParentTree.PointToClient(Cursor.Position).Y >= dropNode.Location.Y + 8)
+                    {
+                        offset = 1;
+                    }
+
+                    dropNode.ParentNode.Nodes.Insert(Math.Max(indexDrop + offset, 0), dtn);
+                     _dragNodes[0].ParentNode.Nodes.Remove(_dragNodes[0]);
+
                 }
 
-                if (TreeViewNodeSorter != null)
-                    dropNode.Nodes.Sort(TreeViewNodeSorter);
 
-                dropNode.Expanded = true;
-
-                foreach (var node in cachedSelectedNodes)
-                    SelectedNodes.Add(node);
             }
 
             StopDrag();
@@ -1044,6 +1081,25 @@ namespace DarkUI.Controls
             base.StopDrag();
         }
 
+        bool DroppedOnFolder(IEnumerable<DarkTreeNode> dragNodes, DarkTreeNode dropNode, bool isMoving = false)
+        {
+            if (dropNode == null)
+                return false;
+
+            foreach (var node in dragNodes)
+            {
+                if (node == dropNode)
+                {
+                    if (dropNode.IsFolder)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
         private bool CanMoveNodes(IEnumerable<DarkTreeNode> dragNodes, DarkTreeNode dropNode, bool isMoving = false)
         {
             if (dropNode == null)
@@ -1053,6 +1109,7 @@ namespace DarkUI.Controls
             {
                 if (node == dropNode)
                 {
+
                     //if (isMoving)
                     //    DarkMessageBox.Show(this, $"Cannot move {node.Text}. The destination folder is the same as the source folder.,", Application.ProductName, MessageBoxIcon.Error);
 
@@ -1110,6 +1167,8 @@ namespace DarkUI.Controls
         private void DrawNode(DarkTreeNode node, Graphics g)
         {
             var rect = GetNodeFullRowArea(node);
+            node.Location = new Point(rect.X, rect.Y);
+            node.Size = new Point(rect.Width, rect.Height);
 
             // 1. Draw background
             var bgColor = node.Odd ? Colors.HeaderBackground : Colors.GreyBackground;
