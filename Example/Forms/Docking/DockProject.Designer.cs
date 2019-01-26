@@ -45,10 +45,11 @@ namespace Example.Forms.Docking
             this.treeProject.Size = new System.Drawing.Size(200, 175);
             this.treeProject.TabIndex = 0;
             this.treeProject.Text = "darkTreeView1";
+            this.treeProject.Click += new System.EventHandler(this.TreeProject_Click);
             // 
             // DockProject
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.treeProject);
             this.DockText = "Project Explorer";

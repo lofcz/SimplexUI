@@ -15,6 +15,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
+using DarkUI;
 
 namespace DarkUI.Controls
 {
@@ -1014,8 +1015,6 @@ namespace DarkUI.Controls
 
                 if (dropNode.IsFolder)
                 {
-                    Debug.WriteLine("good boi");
-
                     foreach (var node in _dragNodes)
                     {
                         if (node.ParentNode == null)
@@ -1037,13 +1036,27 @@ namespace DarkUI.Controls
                 else
                 {
                     // swap position of drag nodes and drop node
-                    int indexDrop = dropNode.ParentNode.Nodes.FindIndex(x => x.GetHashCode() == dropNode.GetHashCode()); // Index of drop node
+                    int indexDrop = 0;
 
+                    
+                    if (dropNode.ParentNode != null)
+                    {
+                        indexDrop = dropNode.ParentNode.Nodes.FindIndex(x => x.GetHashCode() == dropNode.GetHashCode()); // Index of drop node
+                    }
 
                     DarkTreeNode dtn = new DarkTreeNode();
                     dtn.Text = _dragNodes[0].Text;
                     dtn.IsFolder = _dragNodes[0].IsFolder;
-                    dtn.ParentNode = dropNode.ParentNode;
+
+                    if (dropNode.IsFolder)
+                    {
+                        dtn.ParentNode = dropNode;
+                    }
+                    else
+                    {
+                        dtn.ParentNode = dropNode.ParentNode;
+                    }
+
                     dtn.Icon = _dragNodes[0].Icon;
                     dtn.Nodes = _dragNodes[0].Nodes;
                     dtn.Tag = _dragNodes[0].Tag;
@@ -1057,8 +1070,16 @@ namespace DarkUI.Controls
                         offset = 1;
                     }
 
-                    dropNode.ParentNode.Nodes.Insert(Math.Max(indexDrop + offset, 0), dtn);
-                     _dragNodes[0].ParentNode.Nodes.Remove(_dragNodes[0]);
+                    if (dropNode.ParentNode != null)
+                    {
+                        dropNode.ParentNode.Nodes.Insert(Math.Max(indexDrop + offset, 0), dtn);         
+                        _dragNodes[0].ParentNode.Nodes.Remove(_dragNodes[0]);
+                    }
+                    else
+                    {
+                        dropNode.Nodes.Insert(dropNode.Nodes.Count, dtn);
+                        _dragNodes[0].ParentNode.Nodes.Remove(_dragNodes[0]);
+                    }
 
                 }
 
