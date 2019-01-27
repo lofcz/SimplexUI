@@ -2,6 +2,7 @@
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using DarkUI.Config;
 
 namespace DarkUI.Controls
 {
@@ -45,6 +46,8 @@ namespace DarkUI.Controls
                 OnTextChanged();
             }
         }
+
+        public Color Color { get; set; }
 
         public Point Size { get; set; }
 
@@ -176,6 +179,7 @@ namespace DarkUI.Controls
         public DarkTreeNode()
         {
             Nodes = new ObservableList<DarkTreeNode>();
+            Color = Colors.LightText;
         }
 
         public DarkTreeNode(string text)

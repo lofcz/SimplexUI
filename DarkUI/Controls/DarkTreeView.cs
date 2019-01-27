@@ -26,6 +26,7 @@ namespace DarkUI.Controls
         public event EventHandler SelectedNodesChanged;
         public event EventHandler AfterNodeExpand;
         public event EventHandler AfterNodeCollapse;
+        public event EventHandler AfterNodeDragged;
 
         #endregion
 
@@ -1088,6 +1089,9 @@ namespace DarkUI.Controls
 
             StopDrag();
             UpdateNodes();
+
+            // Raise event
+            AfterNodeDragged?.Invoke(this, EventArgs.Empty);
         }
 
         protected override void StopDrag()
@@ -1238,7 +1242,7 @@ namespace DarkUI.Controls
             }
 
             // 4. Draw text
-            using (var b = new SolidBrush(Colors.LightText))
+            using (var b = new SolidBrush(node.Color))
             {
                 var stringFormat = new StringFormat
                 {
