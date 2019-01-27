@@ -27,6 +27,7 @@ namespace Example.Forms.Docking
                     node2.ExpandedIcon = Icons.folder_open;
                     node2.Icon = Icons.folder_closed;
                     node2.IsFolder = true;
+                    node2.SuffixText = "fuck";
 
                     node.Nodes.Add(node2);
                     for (var x = 0; x < 5; x++)

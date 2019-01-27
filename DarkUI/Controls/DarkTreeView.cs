@@ -1257,9 +1257,10 @@ namespace DarkUI.Controls
                     var stringFormat2 = new StringFormat
                     {
                         Alignment = StringAlignment.Far,
-                        LineAlignment = StringAlignment.Center
+                        LineAlignment = StringAlignment.Center,                                       
                     };
 
+                    rect.Width -= 4;
                     g.DrawString(node.SuffixText, Font, new SolidBrush(node.SuffixColor), rect, stringFormat2);
                 }
 
