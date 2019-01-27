@@ -1251,6 +1251,18 @@ namespace DarkUI.Controls
                 };
 
                 g.DrawString(node.Text, Font, b, node.TextArea, stringFormat);
+
+                if (node.SuffixText != "")
+                {
+                    var stringFormat2 = new StringFormat
+                    {
+                        Alignment = StringAlignment.Far,
+                        LineAlignment = StringAlignment.Center
+                    };
+
+                    g.DrawString(node.SuffixText, Font, new SolidBrush(node.SuffixColor), rect, stringFormat2);
+                }
+
             }
 
             // 5. Draw child nodes

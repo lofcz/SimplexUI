@@ -49,6 +49,9 @@ namespace DarkUI.Controls
 
         public Color Color { get; set; }
 
+        public string SuffixText { get; set; }
+        public Color SuffixColor { get; set; }
+
         public Point Size { get; set; }
 
         public Point Location { get; set; }
@@ -180,6 +183,7 @@ namespace DarkUI.Controls
         {
             Nodes = new ObservableList<DarkTreeNode>();
             Color = Colors.LightText;
+            SuffixColor = Colors.LightText;
         }
 
         public DarkTreeNode(string text)
