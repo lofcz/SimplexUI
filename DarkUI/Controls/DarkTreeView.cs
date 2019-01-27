@@ -1063,6 +1063,10 @@ namespace DarkUI.Controls
                     dtn.Tag = _dragNodes[0].Tag;
                     dtn.ParentTree = _dragNodes[0].ParentTree;
                     dtn.IsRoot = _dragNodes[0].IsRoot;
+                    dtn.SuffixText = _dragNodes[0].SuffixText;
+                    dtn.Color = _dragNodes[0].Color;
+                    dtn.SuffixColor = _dragNodes[0].SuffixColor;
+
 
                     int offset = 0;
 
