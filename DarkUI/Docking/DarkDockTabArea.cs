@@ -11,6 +11,7 @@ namespace DarkUI.Docking
 
         private readonly List<ToolStripMenuItem> _menuItems = new List<ToolStripMenuItem>();
         private readonly DarkContextMenu _tabMenu = new DarkContextMenu();
+        public bool DoNotShow = false;
 
         #endregion
 

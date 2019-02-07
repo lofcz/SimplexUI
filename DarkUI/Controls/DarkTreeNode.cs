@@ -69,6 +69,8 @@ namespace DarkUI.Controls
 
         public Bitmap ExpandedIcon { get; set; }
 
+        public string RootNodeName { get; set; }
+
         public bool Expanded
         {
             get { return _expanded; }
@@ -114,6 +116,8 @@ namespace DarkUI.Controls
         public bool IsRoot { get; set; }
 
         public bool IsFolder { get; set; }
+
+        public bool IsCore { get; set; }
 
         public DarkTreeView ParentTree
         {

@@ -702,7 +702,7 @@ namespace DarkUI.Docking
 
             using (var b = new SolidBrush(Colors.GreyBackground))
             {
-                g.FillRectangle(b, ClientRectangle);
+               g.FillRectangle(b, ClientRectangle);
             }
 
             if (!_tabArea.Visible)

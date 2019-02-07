@@ -36,6 +36,8 @@ namespace DarkUI.Docking
             set { base.BackColor = value; }
         }
 
+        public bool HideTitle { get; set; }
+
         #endregion
 
         #region Constructor Region
@@ -64,8 +66,34 @@ namespace DarkUI.Docking
             return DockPanel.ActiveContent == this;
         }
 
+        public void UpdateBtns()
+        {
+            _headerRect = new Rectangle
+            {
+                X = ClientRectangle.Left,
+                Y = ClientRectangle.Top,
+                Width = ClientRectangle.Width,
+                Height = Consts.ToolWindowHeaderSize
+            };
+
+            _closeButtonRect = new Rectangle
+            {
+                X = ClientRectangle.Right - DockIcons.tw_close.Width - 5 - 3,
+                Y = ClientRectangle.Top + Consts.ToolWindowHeaderSize / 2 - DockIcons.tw_close.Height / 2,
+                Width = DockIcons.tw_close.Width,
+                Height = DockIcons.tw_close.Height
+            };
+        }
+
         private void UpdateCloseButton()
         {
+            if (HideTitle)
+            {
+                _headerRect = new Rectangle(0,0, 0, 0);
+                _closeButtonRect = new Rectangle(0, 0, 0, 0);
+                return;
+            }
+
             _headerRect = new Rectangle
             {
                 X = ClientRectangle.Left,
@@ -161,6 +189,12 @@ namespace DarkUI.Docking
         protected override void OnPaint(PaintEventArgs e)
         {
             var g = e.Graphics;
+
+            if (HideTitle)
+            {
+                _headerRect = Rectangle.Empty;
+                return;
+            }
 
             // Fill body
             using (var b = new SolidBrush(Colors.GreyBackground))

@@ -682,12 +682,15 @@ namespace DarkUI.Controls
                             }
                             else
                             {
-                                if (!SelectedNodes.Contains(node))
-                                    SelectNode(node);
+                                if (!node.IsCore)
+                                {
+                                    if (!SelectedNodes.Contains(node))
+                                        SelectNode(node);
 
-                                _dragPos = OffsetMousePosition;
-                                _provisionalDragging = true;
-                                _provisionalNode = node;
+                                    _dragPos = OffsetMousePosition;
+                                    _provisionalDragging = true;
+                                    _provisionalNode = node;
+                                }
                             }
 
                             return;
@@ -950,20 +953,41 @@ namespace DarkUI.Controls
 
             // Create initial list of nodes to drag
             _dragNodes = new List<DarkTreeNode>();
+            bool flag = false;
             foreach (var node in SelectedNodes)
+            {
                 _dragNodes.Add(node);
 
-            // Clear out any nodes with a parent that is being dragged
-            foreach (var node in _dragNodes.ToList())
-            {
-                if (node.ParentNode == null)
-                    continue;
-
-                if (_dragNodes.Contains(node.ParentNode))
-                    _dragNodes.Remove(node);
+                if (node.IsCore)
+                {
+                    _provisionalDragging = false;
+                    _dragNodes = null;
+                    Cursor = Cursors.SizeAll;
+                    StopDrag();
+                    flag = true;
+                    break;
+                }
             }
 
-            _provisionalDragging = false;
+            if (flag)
+            {
+                return;
+            }
+
+            // Clear out any nodes with a parent that is being dragged
+            if (_dragNodes != null)
+            {
+                foreach (var node in _dragNodes.ToList())
+                {
+                    if (node.ParentNode == null)
+                        continue;
+
+                    if (_dragNodes.Contains(node.ParentNode))
+                        _dragNodes.Remove(node);
+                }
+
+                _provisionalDragging = false;
+            }
 
             Cursor = Cursors.SizeAll;
 
@@ -1136,6 +1160,14 @@ namespace DarkUI.Controls
 
             foreach (var node in dragNodes)
             {
+                if (node.RootNodeName != dropNode.RootNodeName)
+                {
+                    if (isMoving)
+                        DarkMessageBox.Show(this, $"Cannot move {node.Text} outside its root folder.", Application.ProductName, MessageBoxIcon.Error);
+
+                    return false;
+                }
+
                 if (node == dropNode)
                 {
 

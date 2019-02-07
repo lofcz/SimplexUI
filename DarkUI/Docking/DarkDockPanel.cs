@@ -26,6 +26,8 @@ namespace DarkUI.Docking
         private DarkDockContent _activeContent;
         private bool _switchingContent;
 
+        public bool HideGroupMenu;
+
         #endregion
 
         #region Property Region

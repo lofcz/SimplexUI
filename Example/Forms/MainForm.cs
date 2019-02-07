@@ -242,7 +242,7 @@ namespace Example.Forms
 
         private void DockPanel_Load(object sender, EventArgs e)
         {
-
+            DockPanel.HideGroupMenu = true;
         }
     }
 }
