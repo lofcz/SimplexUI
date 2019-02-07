@@ -1,5 +1,6 @@
 ﻿using DarkUI.Collections;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using DarkUI.Config;
@@ -212,6 +213,27 @@ namespace DarkUI.Controls
             {
                 parent.Expanded = true;
                 parent = parent.ParentNode;
+            }
+        }
+
+        public List<DarkTreeNode> GetChilds(bool allowFolders = true)
+        {
+            List<DarkTreeNode> dtn = new List<DarkTreeNode>();
+            AddMyNodes(ref dtn, allowFolders);
+           
+            return dtn;
+        }
+
+        void AddMyNodes(ref List<DarkTreeNode> kkt, bool allowFolder)
+        {
+            if (!IsFolder)
+            {
+                kkt.Add(this);
+
+                foreach (DarkTreeNode d in Nodes)
+                {
+                    AddMyNodes(ref kkt, allowFolder);
+                }              
             }
         }
 
