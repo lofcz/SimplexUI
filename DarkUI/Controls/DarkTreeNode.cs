@@ -223,20 +223,23 @@ namespace DarkUI.Controls
         public List<DarkTreeNode> GetChilds(bool allowFolders = true)
         {
             List<DarkTreeNode> dtn = new List<DarkTreeNode>();
-            AddMyNodes(ref dtn, allowFolders);
+            AddMyNodes(ref dtn, true);
            
             return dtn;
         }
 
         void AddMyNodes(ref List<DarkTreeNode> kkt, bool allowFolder)
         {
-            if (!IsFolder)
+            if (allowFolder || !IsFolder)
             {
-                kkt.Add(this);
+                if (!IsFolder)
+                {
+                    kkt.Add(this);
+                }
 
                 foreach (DarkTreeNode d in Nodes)
                 {
-                    AddMyNodes(ref kkt, allowFolder);
+                    d.AddMyNodes(ref kkt, allowFolder);
                 }              
             }
         }
