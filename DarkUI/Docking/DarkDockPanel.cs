@@ -28,6 +28,14 @@ namespace DarkUI.Docking
 
         public bool HideGroupMenu;
 
+        public void AssureMePlase()
+        {
+            foreach (var region in _regions.Values)
+                region.Redraw();
+
+            ActiveContentChanged?.Invoke(this, new DockContentEventArgs(_activeContent));
+        }
+
         #endregion
 
         #region Property Region
@@ -191,6 +199,8 @@ namespace DarkUI.Docking
             if (!_contents.Contains(dockContent))
                 return;
 
+            dockContent.PreClose();
+
             dockContent.DockPanel = null;
             _contents.Remove(dockContent);
 
@@ -198,6 +208,31 @@ namespace DarkUI.Docking
             region.RemoveContent(dockContent);
 
             ContentRemoved?.Invoke(this, new DockContentEventArgs(dockContent));
+
+            DisposeControl(dockContent);
+
+            dockContent.Controls.Clear();
+            dockContent.Dispose();
+
+            GC.Collect();
+        }
+
+        public void DisposeChildControlsOf(Control c)
+        {
+            if (c?.Controls != null)
+                while (c.Controls.Count > 0)
+                {
+                    Control child = c.Controls[0];
+                    c.Controls.RemoveAt(0);
+                    DisposeControl(child);
+                }
+        }
+
+        public void DisposeControl(Control c)
+        {
+            if (null != c)
+                using (c)
+                    DisposeChildControlsOf(c);
         }
 
         public bool ContainsContent(DarkDockContent dockContent)

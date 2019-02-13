@@ -11,6 +11,12 @@ namespace DarkUI.Docking
         #region Event Handler Region
 
         public event EventHandler DockTextChanged;
+        public event EventHandler Closing = delegate { };
+
+        public void PreClose()
+        {
+            Closing.Invoke(null, EventArgs.Empty);
+        }
 
         #endregion
 
@@ -107,6 +113,7 @@ namespace DarkUI.Docking
 
             DockPanel.ActiveContent = this;
         }
+
 
         #endregion
     }

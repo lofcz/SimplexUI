@@ -474,8 +474,12 @@ namespace DarkUI.Docking
             base.OnCreateControl();
 
             _parentForm = FindForm();
-            Debug.Assert(_parentForm != null, nameof(_parentForm) + " != null");
-            _parentForm.ResizeEnd += ParentForm_ResizeEnd;
+           // Debug.Assert(_parentForm != null, nameof(_parentForm) + " != null");
+
+           if (_parentForm != null)
+           {
+               _parentForm.ResizeEnd += ParentForm_ResizeEnd;
+           }
         }
 
         private void ParentForm_ResizeEnd(object sender, EventArgs e)
