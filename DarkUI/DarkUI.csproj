@@ -48,6 +48,9 @@
     <Compile Include="Collections\SortableBindingList.cs" />
     <Compile Include="Config\Colors.cs" />
     <Compile Include="Config\Consts.cs" />
+    <Compile Include="Controls\DarkColorPallete.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\DarkButtonStyle.cs" />
     <Compile Include="Controls\DarkCheckBox.cs">
       <SubType>Component</SubType>
@@ -83,6 +86,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\DarkScrollOrientation.cs" />
+    <Compile Include="Controls\DarkTitle2.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\DarkTitle.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -232,6 +238,9 @@
     <Compile Include="Win32\WindowsMessages.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\DarkColorPallete.resx">
+      <DependentUpon>DarkColorPallete.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\DarkDataGridView.resx">
       <DependentUpon>DarkDataGridView.cs</DependentUpon>
     </EmbeddedResource>
