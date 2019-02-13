@@ -48,6 +48,9 @@
     <Compile Include="Collections\SortableBindingList.cs" />
     <Compile Include="Config\Colors.cs" />
     <Compile Include="Config\Consts.cs" />
+    <Compile Include="Controls\DarkMouseTool.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\DarkColorPallete.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -238,6 +241,9 @@
     <Compile Include="Win32\WindowsMessages.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\DarkMouseTool.resx">
+      <DependentUpon>DarkMouseTool.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\DarkColorPallete.resx">
       <DependentUpon>DarkColorPallete.cs</DependentUpon>
     </EmbeddedResource>
