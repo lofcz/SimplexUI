@@ -48,6 +48,7 @@
     <Compile Include="Collections\SortableBindingList.cs" />
     <Compile Include="Config\Colors.cs" />
     <Compile Include="Config\Consts.cs" />
+    <Compile Include="Controls\DarkImageIndex.cs" />
     <Compile Include="Controls\DarkMouseTool.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -206,6 +207,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DropdownIcons.resx</DependentUpon>
     </Compile>
+    <Compile Include="Icons\LofIcons.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LofIcons.resx</DependentUpon>
+    </Compile>
     <Compile Include="Icons\MenuIcons.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -271,6 +277,10 @@
       <LastGenOutput>DropdownIcons.Designer.cs</LastGenOutput>
       <CustomToolNamespace>DarkUI</CustomToolNamespace>
     </EmbeddedResource>
+    <EmbeddedResource Include="Icons\LofIcons.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LofIcons.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Icons\MenuIcons.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MenuIcons.Designer.cs</LastGenOutput>
@@ -295,6 +305,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>TreeViewIcons.Designer.cs</LastGenOutput>
       <CustomToolNamespace>DarkUI</CustomToolNamespace>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -376,8 +387,13 @@
     <None Include="Resources\Question.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\scroll.png" />
     <None Include="Resources\numericUpDown_arrow.png" />
     <None Include="Resources\combobox_arrow.png" />
+    <None Include="Resources\Border.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\+ sign 80.png" />
     <Content Include="Resources\grip_fill.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

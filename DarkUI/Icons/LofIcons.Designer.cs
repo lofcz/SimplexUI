@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DarkUI {
+namespace DarkUI.Icons {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace DarkUI {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class TreeViewIcons {
+    internal class LofIcons {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal TreeViewIcons() {
+        internal LofIcons() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace DarkUI {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DarkUI.Icons.TreeViewIcons", typeof(TreeViewIcons).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DarkUI.Icons.LofIcons", typeof(LofIcons).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,39 +63,9 @@ namespace DarkUI {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap node_closed_empty {
+        internal static System.Drawing.Bitmap sign {
             get {
-                object obj = ResourceManager.GetObject("node_closed_empty", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap node_closed_full {
-            get {
-                object obj = ResourceManager.GetObject("node_closed_full", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap node_open {
-            get {
-                object obj = ResourceManager.GetObject("node_open", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap node_open_empty {
-            get {
-                object obj = ResourceManager.GetObject("node_open_empty", resourceCulture);
+                object obj = ResourceManager.GetObject("sign", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
